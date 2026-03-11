@@ -1,4 +1,4 @@
-import styles from "@/shared/styles/appShell.module.css";
+import styles from "./LearnWordsPage.module.css";
 import { AppShell } from "@/layouts/AppShell";
 
 export default function LearnWordsPage() {

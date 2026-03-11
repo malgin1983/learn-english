@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "@/shared/styles/appShell.module.css";
+import styles from "./HomePage.module.css";
 import { AppShell } from "@/layouts/AppShell";
 
 export default function HomePage() {

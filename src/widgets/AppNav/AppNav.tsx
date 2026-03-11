@@ -1,29 +1,30 @@
 import Link from "next/link";
-import styles from "@/shared/styles/appShell.module.css";
+import styles from "./AppNav.module.css";
 import { ROUTES, type RouteHref } from "@/shared/config/routes";
 
-type Props = {
+type AppNavProps = {
   activeHref?: RouteHref;
 };
 
-export default function AppNav({ activeHref }: Props) {
+export function AppNav({ activeHref }: AppNavProps) {
   return (
     <nav className={styles.nav} aria-label="Навигация">
       <Link className={styles.brand} href="/">
-        English Learn
+        <span className={styles.brandPart1}>English</span>{" "}
+        <span className={styles.brandPart2}>Learn</span>
       </Link>
 
       <div className={styles.navLinks}>
-        {ROUTES.map((r) => {
-          const isActive = r.href === activeHref;
+        {ROUTES.map((route) => {
+          const isActive = route.href === activeHref;
           return (
             <Link
-              key={r.href}
-              href={r.href}
+              key={route.href}
+              href={route.href}
               className={`${styles.navLink} ${isActive ? styles.navLinkActive : ""}`}
               aria-current={isActive ? "page" : undefined}
             >
-              {r.label}
+              {route.label}
             </Link>
           );
         })}
@@ -31,4 +32,3 @@ export default function AppNav({ activeHref }: Props) {
     </nav>
   );
 }
-

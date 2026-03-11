@@ -1,0 +1,15 @@
+# build & deps
+.next
+node_modules
+out
+build
+
+# lockfiles
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# generated / data
+data
+*.min.js
+*.min.css

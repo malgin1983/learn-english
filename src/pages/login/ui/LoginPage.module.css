@@ -1,0 +1,119 @@
+.wrap {
+  --auth-bg: #ffffff;
+  --auth-card: #fff;
+  --auth-border: #dadce0;
+  --auth-text: #202124;
+  --auth-text-muted: #5f6368;
+  --auth-input-bg: #fff;
+  --auth-input-border: #dadce0;
+  --auth-focus: #4285f4;
+  --auth-error: #d93025;
+  --auth-primary: #4285f4;
+  --auth-primary-hover: #3367d6;
+
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  background: var(--auth-bg);
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px 36px;
+  background: var(--auth-card);
+  border-radius: 20px;
+  border: 1px solid var(--auth-border);
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.08);
+}
+
+.title {
+  margin: 0 0 8px;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--auth-text);
+}
+
+.subtitle {
+  margin: 0 0 28px;
+  font-size: 15px;
+  color: var(--auth-text-muted);
+  line-height: 1.45;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--auth-text);
+}
+
+.input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  font-size: 16px;
+  color: var(--auth-text);
+  background: var(--auth-input-bg);
+  border: 1px solid var(--auth-input-border);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: var(--auth-text-muted);
+}
+
+.input:hover {
+  border-color: #bbb;
+}
+
+.input:focus {
+  border-color: var(--auth-focus);
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.25);
+}
+
+.footer {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--auth-border);
+  text-align: center;
+  font-size: 14px;
+  color: var(--auth-text-muted);
+}
+
+.footerLink {
+  font-weight: 600;
+  color: var(--auth-primary);
+  margin-left: 4px;
+}
+
+.footerLink:hover {
+  text-decoration: underline;
+}
+
+.globalError {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--auth-error);
+  background: rgba(197, 48, 48, 0.08);
+  border-radius: 12px;
+  margin-bottom: 8px;
+}

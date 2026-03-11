@@ -1,0 +1,55 @@
+.nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  font-size: 1.25rem;
+}
+
+.brandPart1 {
+  color: var(--kid-blue);
+}
+
+.brandPart2 {
+  color: var(--kid-red);
+}
+
+.navLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--button-secondary-border);
+  color: var(--text-primary);
+  background: transparent;
+  transition: 0.2s;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.navLinkActive {
+  background: var(--kid-blue);
+  color: #fff;
+  border-color: transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .navLink:hover {
+    background: var(--button-secondary-hover);
+    border-color: transparent;
+  }
+}

@@ -6,7 +6,7 @@ import { revokeSessionByTokenHash } from "@/shared/lib/auth/store";
 export const runtime = "nodejs";
 
 export async function POST(req: Request) {
-  const token = getRequestToken(req);
+  const token = await getRequestToken(req);
   if (!token) {
     return NextResponse.json({ error: "missing_token" }, { status: 401 });
   }

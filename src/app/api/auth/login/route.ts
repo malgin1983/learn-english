@@ -1,22 +1,26 @@
 import { NextResponse } from "next/server";
 import { readJson } from "@/shared/lib/http/json";
 import { createSession, verifyUserPassword } from "@/shared/lib/auth/store";
+import { getAuthCookieOptions } from "@/shared/lib/auth/setAuthCookie";
 
 export const runtime = "nodejs";
 
-type Body = {
+type LoginBody = {
   email?: string;
   password?: string;
 };
 
 export async function POST(req: Request) {
   try {
-    const body = await readJson<Body>(req);
+    const body = await readJson<LoginBody>(req);
     const email = (body.email ?? "").trim();
     const password = body.password ?? "";
 
     if (!email || !password) {
-      return NextResponse.json({ error: "missing_credentials" }, { status: 400 });
+      return NextResponse.json(
+        { error: "missing_credentials" },
+        { status: 400 },
+      );
     }
 
     const verified = await verifyUserPassword({ email, password });
@@ -24,8 +28,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: verified.error }, { status: 401 });
     }
 
-    const userAgent = req.headers.get("user-agent");
-    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
+    const userAgent = req.headers.get("user-agent") ?? undefined;
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
 
     const session = await createSession({
       userId: verified.user.id,
@@ -34,24 +39,27 @@ export async function POST(req: Request) {
     });
 
     const res = NextResponse.json(
-      { user: verified.user, token: session.token, expiresAt: session.expiresAt },
+      {
+        user: verified.user,
+        token: session.token,
+        expiresAt: session.expiresAt,
+      },
       { status: 200 },
     );
 
-    res.cookies.set({
-      name: "auth_token",
-      value: session.token,
-      httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
-      path: "/",
-      maxAge: Math.floor((Date.parse(session.expiresAt) - Date.now()) / 1000),
-    });
+    res.cookies.set(
+      "auth_token",
+      session.token,
+      getAuthCookieOptions(session.expiresAt),
+    );
 
     return res;
   } catch (e) {
     return NextResponse.json(
-      { error: "bad_request", message: e instanceof Error ? e.message : "Unknown error" },
+      {
+        error: "bad_request",
+        message: e instanceof Error ? e.message : "Unknown error",
+      },
       { status: 400 },
     );
   }

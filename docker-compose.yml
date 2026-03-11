@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Candy
+      POSTGRES_DB: english-learn
+    volumes:
+      # Данные БД на диске — удобно бэкапить и переносить на VDS
+      - ./data/postgres:/var/lib/postgresql/data
+      # Миграции выполняются при первом запуске (когда data пустая)
+      - ./db:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d english-learn"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  app:
+    build: .
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://postgres:Candy@postgres:5432/english-learn
+      AUTH_TOKEN_TTL_DAYS: 30
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy

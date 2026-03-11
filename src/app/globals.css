@@ -1,13 +1,15 @@
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
+  --foreground: #202124;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Детская палитра в стиле Google: белый фон + яркие цвета */
+  --kid-blue: #4285f4;
+  --kid-red: #ea4335;
+  --kid-yellow: #fbbc04;
+  --kid-green: #34a853;
+  --kid-purple: #9c27b0;
+  --kid-orange: #ff9800;
+  --text-soft: #5f6368;
 }
 
 html,
@@ -19,7 +21,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -35,8 +37,4 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
+/* Всегда светлая тема для детского приложения */

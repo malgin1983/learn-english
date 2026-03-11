@@ -1,4 +1,4 @@
-import styles from "@/shared/styles/appShell.module.css";
+import styles from "./ReviewWordsPage.module.css";
 import { AppShell } from "@/layouts/AppShell";
 
 export default function ReviewWordsPage() {

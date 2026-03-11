@@ -1,0 +1,68 @@
+.page {
+  --background: #ffffff;
+  --foreground: #fff;
+  --surface: #f8f9fa;
+  --surface-strong: #e8eaed;
+  --text-primary: #202124;
+  --text-secondary: var(--text-soft, #5f6368);
+  --button-primary-hover: #3367d6;
+  --button-secondary-hover: #e8eaed;
+  --button-secondary-border: #dadce0;
+
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-geist-sans);
+  background-color: var(--background);
+}
+
+.main {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 800px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 28px;
+  background-color: var(--foreground);
+  padding: 120px 60px;
+}
+
+.authButtons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  z-index: 1000;
+}
+
+.authLink {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--button-secondary-border);
+  color: var(--text-primary);
+  background: transparent;
+  transition: 0.2s;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .authLink:hover {
+    background: var(--button-secondary-hover);
+    border-color: transparent;
+  }
+}
+
+@media (max-width: 600px) {
+  .main {
+    padding: 48px 24px;
+  }
+}
